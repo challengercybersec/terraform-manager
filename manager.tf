@@ -192,4 +192,6 @@ output "publicamanager" {
  value = azurerm_public_ip.managerip
 }
 
-
+data "template_file" "configscript" {
+  template = file("scriptmanager.sh")
+}
