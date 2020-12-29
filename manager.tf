@@ -155,6 +155,13 @@ resource "azurerm_linux_virtual_machine" "Manager" {
     sku       = "mgmt-byol"
     version   = "latest"
   }
+   plan {
+        name = "mgmt-byol"
+        publisher = "checkpoint"
+        product = "check-point-cg-r8040"
+        }
+
+
 
 #  os_profile_linux_config {
 #    }
