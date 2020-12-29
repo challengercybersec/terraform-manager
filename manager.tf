@@ -114,7 +114,7 @@ resource "azurerm_network_interface" "Manager-Nic" {
 
 #Storage Account Configuration
 resource "azurerm_storage_account" "stgaccmds" {
-  name                     = "storageaccountmds"
+  name                     = "pablobdeblobnamelessstreet123"
   resource_group_name      = azurerm_resource_group.RG-ManagerMDS.name
   location                 = var.region
   account_tier             = "Standard"
@@ -136,6 +136,7 @@ resource "azurerm_linux_virtual_machine" "Manager" {
   resource_group_name = azurerm_resource_group.RG-ManagerMDS.name
   location            = var.region
   size                = "Standard_D3_v2"
+  disable_password_authentication = false
   network_interface_ids = [
     azurerm_network_interface.Manager-Nic.id,
   ]
@@ -155,7 +156,6 @@ resource "azurerm_linux_virtual_machine" "Manager" {
   }
 
 #  os_profile_linux_config {
-#        disable_password_authentication = false
 #    }
 
   boot_diagnostics {
