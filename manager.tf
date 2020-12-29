@@ -113,7 +113,7 @@ resource "azurerm_network_interface" "Manager-Nic" {
 
 
 #Storage Account Configuration
-resource "azurerm_storage_account" "stgacc_mds" {
+resource "azurerm_storage_account" "stgaccmds" {
   name                     = "storageaccountmds"
   resource_group_name      = azurerm_resource_group.RG-ManagerMDS.name
   location                 = var.region
@@ -131,6 +131,7 @@ resource "azurerm_storage_account" "stgacc_mds" {
 
 resource "azurerm_linux_virtual_machine" "Manager" {
   admin_username      = "administratorjeff"
+  computer_name       = "jeff"
   name                = "MDS_Manager"
   resource_group_name = azurerm_resource_group.RG-ManagerMDS.name
   location            = var.region
@@ -164,7 +165,6 @@ resource "azurerm_linux_virtual_machine" "Manager" {
 
 /*
   os_profile {
-        computer_name  = "jeff"
         admin_username = "cloudmss"
         admin_password = "Password1234"
 #        custom_data = base64encode(data.template_file.manager.rendered)
