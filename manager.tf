@@ -24,7 +24,7 @@ resource "azurerm_virtual_network" "Vnet-Manager" {
 
   subnet {
     name           = "subnet-manager"
-    address_prefixes = ["10.4.20.0/25"]
+    address_prefix = "10.4.20.0/25"
   }
 
   tags = {
