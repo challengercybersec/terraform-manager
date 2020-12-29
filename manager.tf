@@ -56,6 +56,7 @@ resource "azurerm_virtual_network" "Vnet-Manager" {
   subnet {
     name           = "subnet-manager"
     address_prefix = "10.4.20.0/25"
+    security_group = azurerm_network_security_group.NSG-Manager.id
   }
 
   tags = {
@@ -65,11 +66,11 @@ resource "azurerm_virtual_network" "Vnet-Manager" {
 
 
 #NSG ASSOCIATIONS
-
+/*
 resource "azurerm_subnet_network_security_group_association" "assosiation1" {
   subnet_id                 = azurerm_virtual_network.Vnet-Manager.subnet.id
   network_security_group_id = azurerm_network_security_group.NSG-Manager.id
 }
 
-
+*/
 
