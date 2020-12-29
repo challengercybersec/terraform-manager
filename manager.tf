@@ -138,6 +138,7 @@ resource "azurerm_linux_virtual_machine" "Manager" {
   location            = var.region
   size                = "Standard_D3_v2"
   disable_password_authentication = false
+  custom_data = base64encode(data.template_file.configscript.rendered)
   network_interface_ids = [
     azurerm_network_interface.Manager-Nic.id,
   ]
