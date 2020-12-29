@@ -74,3 +74,17 @@ resource "azurerm_subnet_network_security_group_association" "assosiation1" {
 
 */
 
+
+#Public IP
+
+resource "azurerm_public_ip" "managerip" {
+  name                = "acceptanceTestPublicIp1"
+  location            = var.region
+  resource_group_name = azurerm_resource_group.RG-ManagerMDS.name
+  allocation_method   = "Static"
+
+  tags = {
+    owner = "Terraform Automation"
+  }
+}
+
