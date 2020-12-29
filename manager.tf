@@ -114,7 +114,7 @@ resource "azurerm_network_interface" "Manager-Nic" {
 
 #Storage Account Configuration
 resource "azurerm_storage_account" "stgaccmds" {
-  name                     = "pablobdeblobnamelessstreet123"
+  name                     = "pablobdeblob"
   resource_group_name      = azurerm_resource_group.RG-ManagerMDS.name
   location                 = var.region
   account_tier             = "Standard"
