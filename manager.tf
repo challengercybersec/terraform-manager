@@ -193,5 +193,9 @@ output "publicamanager" {
 }
 
 data "template_file" "configscript" {
-  template = file("scriptmanager.sh")
+  template = file("${path.module}/scriptmanager.sh")
 }
+
+
+
+
