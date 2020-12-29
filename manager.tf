@@ -130,6 +130,7 @@ resource "azurerm_storage_account" "stgacc_mds" {
 
 
 resource "azurerm_linux_virtual_machine" "Manager" {
+  admin_username      = "administratorjeff"
   name                = "MDS_Manager"
   resource_group_name = azurerm_resource_group.RG-ManagerMDS.name
   location            = var.region
@@ -141,7 +142,7 @@ resource "azurerm_linux_virtual_machine" "Manager" {
   os_disk {
     caching              = "ReadWrite"
     storage_account_type = "Standard_LRS"
-    create_option        = "FromImage"
+#    create_option        = "FromImage"
 #    manage_disk_type     = "Standard_LRS"
   }
 
@@ -152,15 +153,16 @@ resource "azurerm_linux_virtual_machine" "Manager" {
     version   = "latest"
   }
 
-  os_profile_linux_config {
-        disable_password_authentication = false
-    }
+#  os_profile_linux_config {
+#        disable_password_authentication = false
+#    }
 
   boot_diagnostics {
-        enabled = "true"
-        storage_uri = azurerm_storage_account.stgacc_mds.primary_blob_endpoint
+#        enabled = "true"
+#        storage_uri = azurerm_storage_account.stgacc_mds.primary_blob_endpoint
     }
 
+/*
   os_profile {
         computer_name  = "jeff"
         admin_username = "cloudmss"
@@ -169,7 +171,7 @@ resource "azurerm_linux_virtual_machine" "Manager" {
 #Script .sh que ejecuta esas cositas
 
  }
-
+*/
 
   tags = {
     owner = "Terraform Automation"
