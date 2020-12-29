@@ -188,6 +188,8 @@ resource "azurerm_linux_virtual_machine" "Manager" {
 }
 
 
-
+output "publicamanager" {
+ value = azurerm_public_ip.managerip.public_ip
+}
 
 
