@@ -131,6 +131,7 @@ resource "azurerm_storage_account" "stgaccmds" {
 
 resource "azurerm_linux_virtual_machine" "Manager" {
   admin_username      = "administratorjeff"
+  admin_password      = "Password1234"
   computer_name       = "jeff"
   name                = "MDS_Manager"
   resource_group_name = azurerm_resource_group.RG-ManagerMDS.name
@@ -166,7 +167,6 @@ resource "azurerm_linux_virtual_machine" "Manager" {
 /*
   os_profile {
         admin_username = "cloudmss"
-        admin_password = "Password1234"
 #        custom_data = base64encode(data.template_file.manager.rendered)
 #Script .sh que ejecuta esas cositas
 
