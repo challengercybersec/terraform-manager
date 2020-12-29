@@ -126,6 +126,58 @@ resource "azurerm_storage_account" "stgacc_mds" {
 }
 
 
+#Virtual Machine Config
+
+
+resource "azurerm_linux_virtual_machine" "Manager" {
+  name                = "MDS_Manager"
+  resource_group_name = azurerm_resource_group.RG-ManagerMDS.name
+  location            = var.region
+  size                = "Standard_D3_v2"
+  network_interface_ids = [
+    azurerm_network_interface.Manager-Nic.id,
+  ]
+
+  os_disk {
+    caching              = "ReadWrite"
+    storage_account_type = "Standard_LRS"
+    create_option        = "FromImage"
+#    manage_disk_type     = "Standard_LRS"
+  }
+
+  source_image_reference {
+    publisher = "checkpoint"
+    offer     = "check-point-cg-r8040"
+    sku       = "mgmt-byol"
+    version   = "latest"
+  }
+
+  os_profile_linux_config {
+        disable_password_authentication = false
+    }
+
+  boot_diagnostics {
+        enabled = "true"
+        storage_uri = azurerm_storage_account.stgacc_mds.primary_blob_endpoint
+    }
+
+  os_profile {
+        computer_name  = "jeff"
+        admin_username = "cloudmss"
+        admin_password = "Password1234"
+#        custom_data = base64encode(data.template_file.manager.rendered)
+#Script .sh que ejecuta esas cositas
+
+ }
+
+
+  tags = {
+    owner = "Terraform Automation"
+    x-chkp-template = "checkpoinmanager"
+    x-chkp-management = "tfmanager"
+  }
+}
+
 
 
 
