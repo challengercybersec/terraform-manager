@@ -51,7 +51,7 @@ resource "azurerm_virtual_network" "Vnet-Manager" {
   name                = "vnet-manager"
   location            = var.region
   resource_group_name = azurerm_resource_group.RG-ManagerMDS.name
-  address_space       = ["10.4.20.0/24"]
+  address_space       = ["192.168.1.0/24"]
 
   tags = {
     owner = "Terraform Automation"
@@ -65,7 +65,7 @@ resource "azurerm_subnet" "Subnet-Manager" {
   name                 = "subnet-manager"
   resource_group_name  = azurerm_resource_group.RG-ManagerMDS.name
   virtual_network_name = azurerm_virtual_network.Vnet-Manager.name
-  address_prefixes     = ["10.4.20.0/25"]
+  address_prefixes     = ["192.168.1.0/25"]
 }
 
 
